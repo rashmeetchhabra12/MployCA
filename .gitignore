@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.angular/
+.env
+.vscode/
+*.log
+server/server.log
+server/server.err.log
+client/client.log
+client/client.err.log
+client-preview.log
+client-preview.err.log

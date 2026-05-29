@@ -1,0 +1,302 @@
+.dashboard-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  background: #eef2f6;
+  color: #172033;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 28px;
+  background: #0e1b2b;
+  color: #ffffff;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand span {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  background: #14b8a6;
+  font-weight: 900;
+}
+
+nav {
+  display: grid;
+  gap: 8px;
+}
+
+nav a,
+.logout {
+  border: 0;
+  text-align: left;
+  padding: 12px 14px;
+  color: #dbeafe;
+  background: transparent;
+  font: inherit;
+}
+
+nav a.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.logout {
+  margin-top: auto;
+  cursor: pointer;
+}
+
+.workspace {
+  padding: 28px;
+  display: grid;
+  gap: 22px;
+}
+
+.topbar,
+.panel-head,
+.summary-grid,
+.user-row,
+.actions,
+.delay-control {
+  display: flex;
+  align-items: center;
+}
+
+.topbar,
+.panel-head {
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: #0f766e;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+h2 {
+  font-size: 1.35rem;
+}
+
+.role-pill,
+.tag {
+  padding: 8px 12px;
+  background: #ccfbf1;
+  color: #115e59;
+  font-weight: 800;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.summary-grid article,
+.panel {
+  background: #ffffff;
+  border: 1px solid #dbe3ea;
+}
+
+.summary-grid article {
+  padding: 18px;
+}
+
+.summary-grid span {
+  display: block;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.summary-grid strong {
+  font-size: 1.2rem;
+}
+
+.panel {
+  padding: 22px;
+}
+
+.delay-control {
+  gap: 10px;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.delay-control input {
+  width: 96px;
+}
+
+button {
+  border: 0;
+  background: #0f766e;
+  color: #ffffff;
+  padding: 10px 14px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+button.danger {
+  background: #dc2626;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 18px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 14px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+th {
+  color: #64748b;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+.skeleton-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.skeleton-list span {
+  height: 52px;
+  background: linear-gradient(90deg, #e2e8f0, #f8fafc, #e2e8f0);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
+  gap: 22px;
+}
+
+.user-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+input,
+select {
+  height: 42px;
+  border: 1px solid #cbd5e1;
+  padding: 0 12px;
+  font: inherit;
+}
+
+.user-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.user-row {
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px;
+  border: 1px solid #e2e8f0;
+}
+
+.user-row span {
+  display: block;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.actions {
+  gap: 8px;
+}
+
+.notice {
+  margin: 0;
+  padding: 12px 14px;
+  font-weight: 800;
+}
+
+.notice.error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.notice.success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.mini-loader {
+  color: #64748b;
+  font-weight: 800;
+}
+
+@media (max-width: 980px) {
+  .dashboard-shell,
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .workspace {
+    padding: 16px;
+  }
+
+  .topbar,
+  .panel-head,
+  .user-row,
+  .delay-control {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+}

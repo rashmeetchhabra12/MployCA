@@ -1,0 +1,14 @@
+{
+  "name": "role-based-user-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Role-based user operations dashboard built with Angular, Express, TypeScript, and MongoDB.",
+  "scripts": {
+    "client:dev": "npm --prefix client start",
+    "server:dev": "npm --prefix server run dev",
+    "server:start": "npm --prefix server start",
+    "build": "npm --prefix client run build && npm --prefix server run build",
+    "typecheck": "npm --prefix server run build",
+    "start": "npm run build && npm --prefix server start"
+  }
+}

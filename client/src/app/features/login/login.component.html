@@ -1,0 +1,45 @@
+<main class="login-shell">
+  <section class="brand-panel">
+    <div class="brand-mark">UD</div>
+    <p class="eyebrow">User dashboard</p>
+    <h1>Role based access system</h1>
+    <p class="intro">
+      Sign in with a role to view user details, assigned records, and admin controls.
+    </p>
+  </section>
+
+  <section class="login-card" aria-label="Login form">
+    <div>
+      <p class="eyebrow">Account login</p>
+      <h2>Sign in</h2>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <label>
+        User ID
+        <input formControlName="userId" placeholder="admin01" />
+      </label>
+
+      <label>
+        Password
+        <input type="password" formControlName="password" placeholder="Password" />
+      </label>
+
+      <label>
+        Role
+        <select formControlName="role">
+          <option value="General User">General User</option>
+          <option value="Admin">Admin</option>
+        </select>
+      </label>
+
+      @if (error()) {
+        <p class="error">{{ error() }}</p>
+      }
+
+      <button class="primary" type="submit" [disabled]="loading()">
+        {{ loading() ? 'Signing in...' : 'Sign in' }}
+      </button>
+    </form>
+  </section>
+</main>

@@ -1,0 +1,166 @@
+<main class="dashboard-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <span>UD</span>
+      <strong>User Dashboard</strong>
+    </div>
+
+    <nav>
+      <a class="active">Dashboard</a>
+      <a>Records</a>
+      @if (profile()?.role === 'Admin') {
+        <a>Users</a>
+      }
+    </nav>
+
+    <button type="button" class="logout" (click)="logout()">Logout</button>
+  </aside>
+
+  <section class="workspace">
+    <header class="topbar">
+        <div>
+          <p class="eyebrow">Logged in user</p>
+          <h1>{{ profile()?.fullName || 'Loading profile' }}</h1>
+        </div>
+      <div class="role-pill">{{ profile()?.role }}</div>
+    </header>
+
+    @if (error()) {
+      <p class="notice error">{{ error() }}</p>
+    }
+    @if (message()) {
+      <p class="notice success">{{ message() }}</p>
+    }
+
+    <section class="summary-grid">
+      <article>
+        <span>Department</span>
+        <strong>{{ profile()?.department || '-' }}</strong>
+      </article>
+      <article>
+        <span>User ID</span>
+        <strong>{{ profile()?.userId || '-' }}</strong>
+      </article>
+      <article>
+        <span>Status</span>
+        <strong>{{ profile()?.status || '-' }}</strong>
+      </article>
+      <article>
+        <span>Visible records</span>
+        <strong>{{ records().length }}</strong>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">Records</p>
+          <h2>User records</h2>
+        </div>
+        <div class="delay-control">
+          <label for="delayMs">Delay ms</label>
+          <input
+            id="delayMs"
+            type="number"
+            min="0"
+            max="5000"
+            step="500"
+            [ngModel]="delayMs()"
+            (ngModelChange)="delayMs.set($event)"
+          />
+          <button type="button" (click)="loadDashboard()">Reload</button>
+        </div>
+      </div>
+
+      @if (loadingRecords()) {
+        <div class="skeleton-list">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      } @else {
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Record</th>
+                <th>Category</th>
+                <th>Owner</th>
+                <th>Access</th>
+                <th>Status</th>
+                <th>Updated</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (record of records(); track record.id) {
+                <tr>
+                  <td>{{ record.title }}</td>
+                  <td>{{ record.category }}</td>
+                  <td>{{ record.ownerUserId }}</td>
+                  <td><span class="tag">{{ record.accessLevel }}</span></td>
+                  <td>{{ record.status }}</td>
+                  <td>{{ record.updatedAt }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    </section>
+
+    @if (profile()?.role === 'Admin') {
+      <section class="admin-grid">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Admin only</p>
+              <h2>Create user</h2>
+            </div>
+          </div>
+
+          <form class="user-form" (ngSubmit)="saveUser()">
+            <input name="userId" [(ngModel)]="userForm.userId" placeholder="User ID" required />
+            <input name="password" [(ngModel)]="userForm.password" placeholder="Password" required />
+            <input name="fullName" [(ngModel)]="userForm.fullName" placeholder="Full name" required />
+            <input name="email" [(ngModel)]="userForm.email" placeholder="Email" required />
+            <input name="department" [(ngModel)]="userForm.department" placeholder="Department" required />
+            <select name="role" [(ngModel)]="userForm.role">
+              <option value="General User">General User</option>
+              <option value="Admin">Admin</option>
+            </select>
+            <button type="submit">Create user</button>
+          </form>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Directory</p>
+              <h2>Manage users</h2>
+            </div>
+            @if (loadingUsers()) {
+              <span class="mini-loader">Loading</span>
+            }
+          </div>
+
+          <div class="user-list">
+            @for (user of users(); track user.id) {
+              <div class="user-row">
+                <div>
+                  <strong>{{ user.fullName }}</strong>
+                  <span>{{ user.userId }} | {{ user.role }} | {{ user.department }}</span>
+                </div>
+                <div class="actions">
+                  <button type="button" (click)="setStatus(user, user.status === 'Active' ? 'Inactive' : 'Active')">
+                    {{ user.status }}
+                  </button>
+                  <button type="button" class="danger" (click)="deleteUser(user)">Delete</button>
+                </div>
+              </div>
+            }
+          </div>
+        </article>
+      </section>
+    }
+  </section>
+</main>
