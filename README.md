@@ -20,6 +20,15 @@ This is a small full-stack dashboard built for the Angular/Node assignment. It h
 - The records API accepts a `delayMs` parameter to show async loading behavior.
 - The code is split into Angular services, route guards, Express routes, controllers, services, and models.
 
+
+## Application Screenshot:
+   <img width="1918" height="856" alt="Screenshot 2026-05-29 192231" src="https://github.com/user-attachments/assets/2d20eae1-2d22-4469-8acd-72872f1c8f0d" />
+ 
+<img width="1905" height="775" alt="image" src="https://github.com/user-attachments/assets/ef425216-22af-406a-9779-f0d0253c8543" />
+
+<img width="1919" height="858" alt="image" src="https://github.com/user-attachments/assets/bd0bdd97-6e6c-432e-a3d1-303b1c95bb98" />
+
+
 ## Test Users
 
 | Role | User ID | Password |
